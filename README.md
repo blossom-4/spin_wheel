@@ -44,24 +44,16 @@ const projectLinks = {
 
 ## Features
 
-- Smooth spinning animation
-- Random project selection
-- Project-specific styling (fonts and colors)
-- Responsive popup modal
-- Sparkly background with twinkling stars
-- [ ] Uses semantic HTML.
-
-### Bonus (optional)
- Add a short paragraph describing the features below, if you included any. 
-- [ ] Different styles for active, hover and focus states.
-- [ ] Include JavaScript to add some dynamic elements to your site. (Extra tricky!)
-​
-### Screenshots
-> Please include the following:
-> - The different pages and features of your website on mobile, tablet and desktop screen sizes (multiple screenshots per page and screen size).
-> - The different features of your site, e.g. if you have hover states, take a screenshot that shows that.  
-> 
-> You can do this by saving the images in a folder in your repo, and including them in your readme document with the following Markdown code: 
-
-####  image_title_goes_here 
-![Put a description of your image here](./relative_path_to_file)
+- Smooth spinning animation (4.2 seconds with easing)
+- 6-8 full rotations before landing on winner for added excitement
+- Random project selection from 6 segments
+- Project-specific styling:
+  - **Portfolio Page**: Sancreek font in #273C75 blue
+  - **Raise the Case**: Source Sans 3 font in #C6A664 gold
+  - **Team Pulse**: Cormorant Garamond font in #a8d8c4 teal with gradient background
+- Winner announcement popup modal
+- Direct links to project websites from modal button
+- Click outside modal to close it
+- Clean, minimalist design with light cream background (#F3F5F2)
+- Responsive design using CSS min() and clamp() functions
+- No separators between wheel segments for seamless appearance
