@@ -8,6 +8,8 @@ const items = [
     "Team Pulse"
 ];
 
+// Wait for DOM to be fully loaded
+document.addEventListener("DOMContentLoaded", () => {
 // Colors for each slice (same order as items)
 const sliceColors = [
     "#AAC0E7",   // Portfolio
@@ -21,7 +23,6 @@ const sliceColors = [
 const wheelEl = document.getElementById("wheel");
 const labelsEl = document.getElementById("labels");
 const spinBtn = document.getElementById("spinBtn");
-const resultEl = document.getElementById("result");
 
 const n = items.length;
 const slice = 360 / n;
@@ -90,7 +91,6 @@ spinBtn.addEventListener("click", () => {
     if (spinning) return;
     spinning = true;
     spinBtn.disabled = true;
-    resultEl.textContent = "";
 
     // Choose a random target slice
     const targetIndex = Math.floor(Math.random() * n);
@@ -135,7 +135,6 @@ wheelEl.addEventListener("transitionend", () => {
     projectLink.href = projectLinks[winner] || "#";
     modal.classList.add("show");
     
-    resultEl.textContent = `Winner: ${winner}`;
     spinning = false;
     spinBtn.disabled = false;
 });
@@ -146,4 +145,5 @@ window.addEventListener("click", (event) => {
     if (event.target === modal) {
         modal.classList.remove("show");
     }
+});
 });
