@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Sancreek&family=Source+Sans+3&family=Cormorant+Garamond&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F3F5F2;
+    position: relative;
+    overflow: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-size: 100% 100%;
+    background-position: 0 0;
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+.container {
+    text-align: center;
+    padding: 24px;
+}
+
+h1 {
+    color: rebeccapurple;
+    margin-bottom: 28px;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, .25);
+}
+
+.wheel-wrap {
+    position: relative;
+    width: min(420px, 85vw);
+    aspect-ratio: 1 / 1;
+    margin: 0 auto 26px;
+    filter: drop-shadow(0 14px 28px rgba(0, 0, 0, .25));
+}
+
+/* Pointer */
+.pointer {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-top: 22px solid rebeccapurple;
+    z-index: 10;
+}
+
+/* Wheel */
+.wheel {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #fff;
+    overflow: hidden;
+    position: relative;
+    transform: rotate(0deg);
+    transition: transform 4.2s cubic-bezier(.12, .82, .12, 1);
+    will-change: transform;
+}
+
+/* Ring + center cap */
+.wheel::before {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.wheel::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #111010;
+    opacity: .55;
+    pointer-events: none;
+}
+
+/* Labels */
+.labels {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    transform: rotate(0deg);
+    transition: transform 4.2s cubic-bezier(.12, .82, .12, 1);
+    will-change: transform;
+}
+
+.labels {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    transform: rotate(0deg);
+    transition: transform 4.2s cubic-bezier(.12, .82, .12, 1);
+    will-change: transform;
+}
+
+.label {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform-origin: 0 0;
+    /* important: pivot at the center */
+    font-weight: 700;
+    font-size: 18px;
+    white-space: nowrap;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .65);
+}
+
+/* Keep your per-project fonts/colors */
+.label-portfolio {
+    font-family: 'Sancreek', serif;
+    color: #273C75;
+}
+
+.label-raise-case {
+    font-family: 'Source Sans 3', sans-serif;
+    color: #C6A664;
+}
+
+.label-team-pulse {
+    font-family: 'Cormorant Garamond', serif;
+    color: #2c6e5a;
+}
+
+
+/* Button + result */
+.spin-button {
+    padding: 14px 42px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #fff;
+    background: rebeccapurple;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, .25);
+    transition: transform .15s ease, filter .15s ease;
+}
+
+.spin-button:hover {
+    transform: translateY(-2px);
+}
+
+.spin-button:active {
+    transform: translateY(0);
+}
+
+.spin-button:disabled {
+    cursor: not-allowed;
+    filter: grayscale(.2) opacity(.75);
+}
+
+.result {
+    margin-top: 16px;
+    color: #fff;
+    font-size: 1.1rem;
+    min-height: 1.4em;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background-color: #f4f1de;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+}
+
+.modal-content h2 {
+    color: #273C75;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.winner-text {
+    color: #1a1a1a;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.project-button {
+    display: inline-block;
+    padding: 14px 40px;
+    background-color: rebeccapurple;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.project-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+}

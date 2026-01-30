@@ -1,33 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Spin Wheel Game</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
     <div class="container">
         <h1>Spin the Wheel!</h1>
-        
-        <div class="wheel-container">
-            <div class="wheel">
-                <div class="segment segment-1">Project 1</div>
-                <div class="segment segment-2">Project 2</div>
-                <div class="segment segment-3">Project 3</div>
-                <div class="segment segment-4">Project 1</div>
-                <div class="segment segment-5">Project 2</div>
-                <div class="segment segment-6">Project 3</div>
-            </div>
+
+        <div class="wheel-wrap">
             <div class="pointer"></div>
+            <div id="wheel" class="wheel"></div>
+            <div id="labels" class="labels"></div>
         </div>
-        
-        <button class="spin-button">SPIN</button>
+
+        <button id="spinBtn" class="spin-button">SPIN</button>
+        <div id="result" class="result"></div>
     </div>
-    
+
+    <!-- Winner Modal -->
+    <div id="winnerModal" class="modal">
+        <div class="modal-content">
+            <h2>🎉 WAHOO! 🎉</h2>
+            <p id="winnerText" class="winner-text"></p>
+            <a id="projectLink" class="project-button" href="#" target="_blank">Visit Project</a>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 

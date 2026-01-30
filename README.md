@@ -1,23 +1,54 @@
-#  your_name_here - Portfolio Task
-​
-[My portfolio site](link_to_your_site)
-​
-## Project Requirements
+# Spin Wheel Game
 
-### Content
- Add a short paragraph describing the features below. What aesthetic and technical choices did you make? 
-- [ ] At least one profile picture
-- [ ] Biography (at least 100 words)
-- [ ] Functional Contact Form
-- [ ] "Projects" section
-- [ ] Links to external sites, e.g. GitHub and LinkedIn.
-​
-### Technical
- Add a short paragraph describing the features below. What strategies or design decisions did you work from? 
-- [ ] At least 2 web pages.
-- [ ] Version controlled with Git
-- [ ] Deployed on GitHub pages.
-- [ ] Implements responsive design principles.
+A simple interactive spin wheel game that allows users to spin and randomly select from three projects.
+
+## What It Does
+
+- Click the SPIN button to make the wheel spin
+- The wheel randomly selects one of three projects
+- A popup appears showing which project you're visiting
+- Click the button in the popup to visit the project website
+
+## Projects
+
+The wheel features three projects:
+
+1. **Portfolio Page** - Light blue segments
+2. **Raise the Case** - Dark blue segments
+3. **Team Pulse** - Gradient color segments
+
+## How to Use
+
+1. Open `index.html` in your web browser
+2. Click the SPIN button
+3. Wait for the wheel to stop spinning
+4. Click the Visit Project button to go to the selected project
+
+## Files
+
+- `index.html` - Main HTML file
+- `styles.css` - Styling and animations
+- `script.js` - Wheel logic and interactions
+
+## Customization
+
+To update the project links, edit the `projectLinks` object in `script.js`:
+
+```javascript
+const projectLinks = {
+        "Portfolio Page": "https://blossom-4.github.io/",
+        "Raise the Case": "https://raise-the-case.netlify.app/",
+        "Team Pulse": "https://teampulse-app.netlify.app/"
+};
+```
+
+## Features
+
+- Smooth spinning animation
+- Random project selection
+- Project-specific styling (fonts and colors)
+- Responsive popup modal
+- Sparkly background with twinkling stars
 - [ ] Uses semantic HTML.
 
 ### Bonus (optional)
