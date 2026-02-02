@@ -1,23 +1,22 @@
-// Edit these to whatever you want:
 const items = [
-    "Portfolio Page",
-    "Raise the Case",
-    "Team Pulse",
-    "Portfolio Page",
-    "Raise the Case",
-    "Team Pulse"
+    "BH",
+    "RTC",
+    "TP",
+    "BH",
+    "RTC",
+    "TP"
 ];
 
-// Wait for DOM to be fully loaded
+
 document.addEventListener("DOMContentLoaded", () => {
-// Colors for each slice (same order as items)
+
 const sliceColors = [
-    "#AAC0E7",   // Portfolio
-    "#1A2C3D",   // Raise the Case
-    "gradient",  // Team Pulse (gradient handled below)
-    "#AAC0E7",   // Portfolio
-    "#1A2C3D",   // Raise the Case
-    "gradient"   // Team Pulse (gradient handled below)
+    "#AAC0E7",
+    "#1A2C3D",
+    "gradient",
+    "#AAC0E7",
+    "#1A2C3D",
+    "gradient"
 ];
 
 const wheelEl = document.getElementById("wheel");
@@ -27,14 +26,11 @@ const spinBtn = document.getElementById("spinBtn");
 const n = items.length;
 const slice = 360 / n;
 
-// Build wheel background
-// (no separators between slices)
 const stops = [];
 for (let i = 0; i < n; i++) {
     const start = i * slice;
     const end = (i + 1) * slice;
 
-    // For Team Pulse segments (indices 2 and 5), create a gradient effect
     if (i === 2 || i === 5) {
         stops.push(`#FCE7C8 ${start}deg`);
         stops.push(`#dbeaf8 ${end}deg`);
@@ -44,8 +40,6 @@ for (let i = 0; i < n; i++) {
 }
 wheelEl.style.background = `conic-gradient(${stops.join(",")})`;
 
-// Place labels around the wheel
-// We put each label at the middle angle of its slice, and push it outward.
 const radius = 140;
 labelsEl.innerHTML = "";
 
@@ -55,9 +49,9 @@ items.forEach((text, i) => {
     const label = document.createElement("div");
     label.className = "label";
 
-    if (text === "Portfolio Page") label.classList.add("label-portfolio");
-    if (text === "Raise the Case") label.classList.add("label-raise-case");
-    if (text === "Team Pulse") label.classList.add("label-team-pulse");
+    if (text === "BH") label.classList.add("label-portfolio");
+    if (text === "RTC") label.classList.add("label-raise-case");
+    if (text === "TP") label.classList.add("label-team-pulse");
 
     label.textContent = text;
 
@@ -77,11 +71,7 @@ let currentRotation = 0;
 let spinning = false;
 
 function pickWinnerByRotation(rotDeg) {
-    // Pointer is at top (0deg). Wheel rotation moves slices under pointer.
-    // Normalize so 0..360, then find slice index.
     const normalized = ((rotDeg % 360) + 360) % 360;
-    // We want the angle under the pointer after rotation:
-    // When wheel rotates clockwise by normalized, the slice at angle (360 - normalized) is at pointer.
     const pointerAngle = (360 - normalized) % 360;
     const index = Math.floor(pointerAngle / slice) % n;
     return index;
@@ -92,17 +82,16 @@ spinBtn.addEventListener("click", () => {
     spinning = true;
     spinBtn.disabled = true;
 
-    // Choose a random target slice
+
     const targetIndex = Math.floor(Math.random() * n);
 
-    // Choose a random angle within that slice (avoid borders a bit)
-    const padding = 4; // degrees away from edges
+
+    const padding = 4; 
     const within = padding + Math.random() * (slice - padding * 2);
     const targetAngle = (targetIndex * slice) + within;
 
-    // We want targetAngle to end up at the pointer (top = 0deg).
-    // That means the wheel's final rotation should be: 360 - targetAngle (plus extra spins)
-    const extraSpins = 6 + Math.floor(Math.random() * 3); // 6-8 full spins
+
+    const extraSpins = 6 + Math.floor(Math.random() * 3); 
     const finalRotation = (extraSpins * 360) + (360 - targetAngle);
 
     currentRotation += finalRotation;
@@ -114,22 +103,28 @@ spinBtn.addEventListener("click", () => {
 wheelEl.addEventListener("transitionend", () => {
     if (!spinning) return;
 
-    // Determine winner from the final rotation
+
     const winnerIndex = pickWinnerByRotation(currentRotation);
     const winner = items[winnerIndex];
 
-    // Show winner modal
+
     const modal = document.getElementById("winnerModal");
     const winnerText = document.getElementById("winnerText");
     const projectLink = document.getElementById("projectLink");
     
-    winnerText.textContent = `You're visiting: ${winner}`;
+
+    const fullNames = {
+        "BH": "Portfolio Page",
+        "RTC": "Raise the Case",
+        "TP": "Team Pulse"
+    };
     
-    // Set project links (update these with actual URLs)
+    winnerText.textContent = `You're visiting: ${fullNames[winner]}`;
+    
     const projectLinks = {
-        "Portfolio Page": "https://blossom-4.github.io/",
-        "Raise the Case": "https://raise-the-case.netlify.app/",
-        "Team Pulse": "https://teampulse-app.netlify.app/"
+        "BH": "https://blossom-4.github.io/",
+        "RTC": "https://raise-the-case.netlify.app/",
+        "TP": "https://teampulse-app.netlify.app/"
     };
     
     projectLink.href = projectLinks[winner] || "#";
@@ -139,7 +134,6 @@ wheelEl.addEventListener("transitionend", () => {
     spinBtn.disabled = false;
 });
 
-// Close modal when clicking outside of it
 const modal = document.getElementById("winnerModal");
 window.addEventListener("click", (event) => {
     if (event.target === modal) {

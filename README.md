@@ -15,7 +15,7 @@ The wheel features three projects:
 
 1. **Portfolio Page** - Light blue segments
 2. **Raise the Case** - Dark blue segments
-3. **Team Pulse** - Gradient color segments
+3. **Team Pulse** - Gradient colour segments
 
 ## How to Use
 
@@ -30,7 +30,7 @@ The wheel features three projects:
 - `styles.css` - Styling and animations
 - `script.js` - Wheel logic and interactions
 
-## Customization
+## Customisation
 
 To update the project links, edit the `projectLinks` object in `script.js`:
 
